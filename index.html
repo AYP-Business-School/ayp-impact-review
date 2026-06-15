@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AYP Impact Review – Aprende y Prospera</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0B1F3A;
+      --navy-mid: #152E52;
+      --gold: #C9A84C;
+      --gold-light: #E8C96A;
+      --cream: #F7F4EE;
+      --cream-dark: #EDE9E0;
+      --charcoal: #2D3748;
+      --coral: #E8714A;
+      --coral-dark: #C85A35;
+      --text-muted: #6B7280;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--charcoal); line-height: 1.6; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy);
+      border-bottom: 2px solid var(--gold);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-brand {
+      display: flex; flex-direction: column; line-height: 1.1;
+    }
+    .nav-brand .eyebrow {
+      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); font-family: 'Inter', sans-serif; font-weight: 500;
+    }
+    .nav-brand .title {
+      font-family: 'Playfair Display', serif; font-size: 1.1rem;
+      color: var(--white); font-weight: 700;
+    }
+    .nav-links { display: flex; gap: 0; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em;
+      padding: 0.4rem 0.9rem; border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); background: rgba(255,255,255,0.06); }
+    .nav-cta {
+      background: var(--coral); color: var(--white) !important;
+      border-radius: 4px; padding: 0.4rem 1rem !important;
+      font-weight: 600 !important; transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--coral-dark) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; }
+
+    /* ─── MASTHEAD HERO ─── */
+    .hero {
+      background: var(--navy);
+      padding: 3.5rem 2rem 0;
+      overflow: hidden;
+    }
+    .masthead-rule {
+      border: none; border-top: 1px solid rgba(201,168,76,0.4);
+      margin-bottom: 1.5rem;
+    }
+    .masthead-meta {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 380px;
+      gap: 4rem; align-items: end;
+      padding-bottom: 0;
+    }
+    .hero-text { padding-bottom: 3rem; }
+    .hero-eyebrow {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); font-weight: 500; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 28px; height: 1px; background: var(--gold);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      color: var(--white); line-height: 1.1; font-weight: 900;
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold-light); }
+    .hero-tagline {
+      font-size: 1.05rem; color: rgba(255,255,255,0.65);
+      margin: 1.2rem 0 2rem; max-width: 480px; line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--coral); color: var(--white);
+      padding: 0.75rem 1.8rem; border-radius: 4px;
+      font-weight: 600; font-size: 0.9rem; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-primary:hover { background: var(--coral-dark); transform: translateY(-1px); }
+    .btn-secondary {
+      border: 1px solid rgba(201,168,76,0.6); color: var(--gold);
+      padding: 0.75rem 1.8rem; border-radius: 4px;
+      font-weight: 500; font-size: 0.9rem; text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); }
+
+    /* Cover image rising from bottom */
+    .hero-cover {
+      align-self: flex-end;
+      position: relative;
+    }
+    .cover-card {
+      background: var(--white);
+      box-shadow: 0 -24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.3);
+      border-radius: 6px 6px 0 0;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      display: flex; flex-direction: column;
+    }
+    .cover-top {
+      background: var(--navy-mid);
+      padding: 1.5rem;
+      flex: 1;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .cover-vol {
+      font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); border-bottom: 1px solid rgba(201,168,76,0.3);
+      padding-bottom: 0.75rem; margin-bottom: 1rem;
+    }
+    .cover-title-main {
+      font-family: 'Playfair Display', serif; font-size: 1.5rem;
+      color: var(--white); font-weight: 900; line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    .cover-subtitle { font-size: 0.75rem; color: var(--gold-light); letter-spacing: 0.06em; }
+    .cover-topics { list-style: none; }
+    .cover-topics li {
+      font-size: 0.72rem; color: rgba(255,255,255,0.65);
+      padding: 0.3rem 0; border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .cover-topics li::before { content: '›'; color: var(--coral); font-size: 0.9rem; }
+    .cover-bottom {
+      background: var(--gold);
+      padding: 0.75rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .cover-bottom span { font-size: 0.7rem; font-weight: 600; color: var(--navy); letter-spacing: 0.05em; }
+
+    /* ─── PRINCIPLES STRIP ─── */
+    .principles {
+      background: var(--cream-dark);
+      border-top: 3px solid var(--gold);
+      padding: 2.5rem 2rem;
+    }
+    .principles-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem;
+    }
+    .principle {
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .principle-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; font-weight: 900; color: var(--gold);
+      line-height: 1; flex-shrink: 0; opacity: 0.5;
+    }
+    .principle-body h3 {
+      font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--navy); margin-bottom: 0.3rem;
+    }
+    .principle-body p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ─── SECTION SHELL ─── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--coral); font-weight: 600; margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--cream-dark); }
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--navy); line-height: 1.2; margin-bottom: 1rem;
+    }
+    .section-sub { color: var(--text-muted); font-size: 1rem; max-width: 560px; line-height: 1.7; }
+
+    /* ─── CURRENT ISSUE ─── */
+    #edicion { background: var(--white); }
+    .issue-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .article-card {
+      background: var(--cream); border-radius: 6px;
+      padding: 2rem; border-top: 3px solid transparent;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .article-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
+    .article-card:nth-child(1) { border-top-color: var(--coral); }
+    .article-tag {
+      font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--coral); font-weight: 600; margin-bottom: 0.75rem;
+    }
+    .article-card h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.2rem;
+      color: var(--navy); line-height: 1.3; margin-bottom: 0.75rem; font-weight: 700;
+    }
+    .article-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
+    .article-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 1.25rem; font-size: 0.82rem; font-weight: 600;
+      color: var(--navy); text-decoration: none;
+      border-bottom: 1px solid var(--gold); padding-bottom: 1px;
+      transition: color 0.2s;
+    }
+    .article-link:hover { color: var(--coral); }
+
+    /* ─── ARCHIVE ─── */
+    #archivo { background: var(--cream); }
+    .archive-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .archive-card {
+      background: var(--white); border-radius: 6px; overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .archive-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.1); }
+    .archive-cover {
+      background: var(--navy-mid); padding: 2rem 1.5rem;
+      aspect-ratio: 4/3; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .archive-vol { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+    .archive-title {
+      font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 900;
+      color: var(--white); line-height: 1.2;
+    }
+    .archive-badge {
+      background: var(--coral); color: var(--white);
+      font-size: 0.6rem; font-weight: 700; padding: 0.2rem 0.5rem;
+      border-radius: 2px; text-transform: uppercase; letter-spacing: 0.08em;
+      display: inline-block;
+    }
+    .archive-info { padding: 1.25rem 1.5rem; }
+    .archive-info h4 { font-size: 0.85rem; font-weight: 600; color: var(--navy); margin-bottom: 0.3rem; }
+    .archive-info p { font-size: 0.78rem; color: var(--text-muted); }
+    .archive-info a {
+      display: inline-block; margin-top: 0.75rem;
+      font-size: 0.78rem; font-weight: 600; color: var(--coral); text-decoration: none;
+    }
+    .archive-info a:hover { text-decoration: underline; }
+
+    /* ─── SUBSCRIPTION ─── */
+    #suscripcion { background: var(--navy); }
+    #suscripcion .section-heading { color: var(--white); }
+    #suscripcion .section-sub { color: rgba(255,255,255,0.6); }
+    #suscripcion .section-label::after { background: rgba(255,255,255,0.1); }
+    .sub-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center; margin-top: 3rem;
+    }
+    .sub-benefits { list-style: none; margin-top: 1.5rem; }
+    .sub-benefits li {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.9rem; color: rgba(255,255,255,0.75);
+    }
+    .sub-benefits li:last-child { border-bottom: none; }
+    .sub-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.05rem; }
+    .sub-form {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 8px; padding: 2.5rem;
+    }
+    .sub-form h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.5rem;
+      color: var(--white); margin-bottom: 0.5rem;
+    }
+    .sub-form p { font-size: 0.85rem; color: rgba(255,255,255,0.55); margin-bottom: 1.5rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.6); margin-bottom: 0.4rem; text-transform: uppercase;
+    }
+    .form-group input, .form-group select {
+      width: 100%; padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px; color: var(--white); font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+    .form-group input:focus, .form-group select:focus {
+      outline: none; border-color: var(--gold);
+    }
+    .form-group input::placeholder { color: rgba(255,255,255,0.3); }
+    .form-group select option { background: var(--navy); }
+    .sub-submit {
+      width: 100%; padding: 0.9rem;
+      background: var(--coral); color: var(--white);
+      border: none; border-radius: 4px; font-size: 0.95rem;
+      font-weight: 700; cursor: pointer; margin-top: 0.5rem;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+    }
+    .sub-submit:hover { background: var(--coral-dark); }
+    .sub-note { font-size: 0.72rem; color: rgba(255,255,255,0.35); margin-top: 0.75rem; text-align: center; }
+
+    /* ─── COMMUNITY ─── */
+    #comunidad { background: var(--cream-dark); }
+    .community-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .community-card {
+      background: var(--white); border-radius: 6px; padding: 2rem;
+      text-align: center; border-bottom: 3px solid transparent;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .community-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+    .community-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .community-card h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.15rem;
+      color: var(--navy); margin-bottom: 0.5rem;
+    }
+    .community-card p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.7; }
+    .community-card a {
+      display: inline-block; margin-top: 1rem; font-size: 0.82rem;
+      font-weight: 600; color: var(--coral); text-decoration: none;
+    }
+    .community-card a:hover { text-decoration: underline; }
+
+    /* ─── AUTHORS / EXPERTS ─── */
+    #expertos { background: var(--white); }
+    .experts-intro {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .expert-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .expert-card {
+      display: flex; gap: 1rem; align-items: center;
+      background: var(--cream); border-radius: 6px; padding: 1.25rem;
+      border-left: 3px solid var(--gold);
+    }
+    .expert-avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--navy-mid); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 1.2rem;
+      color: var(--gold); font-weight: 700;
+    }
+    .expert-info h4 { font-size: 0.9rem; font-weight: 700; color: var(--navy); }
+    .expert-info p { font-size: 0.78rem; color: var(--text-muted); }
+    .expert-tag {
+      margin-left: auto; flex-shrink: 0;
+      font-size: 0.65rem; background: var(--navy); color: var(--gold);
+      padding: 0.2rem 0.6rem; border-radius: 3px; letter-spacing: 0.06em;
+    }
+    .experts-cta-box {
+      background: var(--navy); border-radius: 8px; padding: 3rem;
+    }
+    .experts-cta-box h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.8rem;
+      color: var(--white); margin-bottom: 1rem; line-height: 1.2;
+    }
+    .experts-cta-box p { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.7; }
+
+    /* ─── NEWSLETTER QUIZ STRIP ─── */
+    .pullquote {
+      background: var(--gold);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .pullquote blockquote {
+      max-width: 700px; margin: 0 auto;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      color: var(--navy); line-height: 1.4; font-style: italic;
+    }
+    .pullquote cite {
+      display: block; margin-top: 1rem;
+      font-family: 'Inter', sans-serif; font-size: 0.78rem;
+      font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--navy); font-style: normal; opacity: 0.65;
+    }
+
+    /* ─── FAQ ─── */
+    #faq { background: var(--cream); }
+    .faq-list { margin-top: 2.5rem; max-width: 720px; }
+    .faq-item {
+      border-bottom: 1px solid var(--cream-dark);
+    }
+    .faq-q {
+      width: 100%; background: none; border: none;
+      text-align: left; padding: 1.25rem 0;
+      font-size: 0.95rem; font-weight: 600; color: var(--navy);
+      cursor: pointer; display: flex; justify-content: space-between;
+      align-items: center; gap: 1rem; font-family: 'Inter', sans-serif;
+    }
+    .faq-arrow { flex-shrink: 0; color: var(--gold); font-size: 1rem; transition: transform 0.2s; }
+    .faq-a {
+      max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.7;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding-bottom: 1.25rem; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    /* ─── ABOUT ─── */
+    #nosotros { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .stat-box {
+      background: var(--cream); border-radius: 6px; padding: 1.5rem;
+      border-top: 3px solid var(--gold);
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; font-weight: 900; color: var(--navy);
+    }
+    .stat-label { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy);
+      border-top: 2px solid var(--gold);
+      padding: 3rem 2rem 1.5rem;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 2.5rem;
+    }
+    .footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-top: 0.75rem; line-height: 1.7; }
+    .footer-col h4 {
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem; font-weight: 600;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.5rem; }
+    .footer-col ul a {
+      font-size: 0.82rem; color: rgba(255,255,255,0.5); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.25rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.75rem; color: rgba(255,255,255,0.3);
+    }
+    .footer-social { display: flex; gap: 1rem; }
+    .footer-social a {
+      font-size: 0.75rem; color: rgba(255,255,255,0.4); text-decoration: none;
+      font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-social a:hover { color: var(--gold); }
+
+    /* ─── SUCCESS ─── */
+    .success-msg {
+      display: none; background: rgba(201,168,76,0.15);
+      border: 1px solid var(--gold); border-radius: 4px;
+      padding: 1rem; text-align: center;
+      color: var(--gold-light); font-size: 0.88rem; margin-top: 1rem;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-cover { display: none; }
+      .principles-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+      .issue-grid { grid-template-columns: 1fr; }
+      .sub-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .community-grid { grid-template-columns: 1fr; }
+      .experts-intro { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-brand">
+    <span class="eyebrow">Aprende y Prospera</span>
+    <span class="title">AYP Impact Review</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#edicion">Edición Actual</a></li>
+    <li><a href="#archivo">Archivo</a></li>
+    <li><a href="#expertos">Expertos</a></li>
+    <li><a href="#comunidad">Comunidad</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#suscripcion" class="nav-cta">Suscribirse</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="hero-inner">
+    <hr class="masthead-rule"/>
+    <div class="masthead-meta">
+      <span>Vol. I — N° 1 · 2025</span>
+      <span>Revista Digital Semestral</span>
+      <span>Educación Aplicada para Emprendedores</span>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-text">
+        <p class="hero-eyebrow">AYP Business School</p>
+        <h1>Conocimiento<br/>que <em>transforma</em><br/>en acción</h1>
+        <p class="hero-tagline">La revista digital de educación práctica para profesionales y emprendedores latinoamericanos. Cada artículo es el registro vivo de aprendizajes con expertos reales.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn-primary">📥 Descargar Edición Actual</a>
+          <a href="#suscripcion" class="btn-secondary">Suscribirse gratis →</a>
+        </div>
+      </div>
+      <div class="hero-cover">
+        <div class="cover-card">
+          <div class="cover-top">
+            <div>
+              <div class="cover-vol">Aprende y Prospera – Impact Review · Vol. 1, N°1</div>
+              <div class="cover-title-main">Talento, IA<br/>y Finanzas</div>
+              <div class="cover-subtitle">El futuro del trabajo latinoamericano</div>
+            </div>
+            <ul class="cover-topics">
+              <li>Oportunidades de talento latino en EE.UU.</li>
+              <li>IA y el futuro del trabajo en Latinoamérica</li>
+              <li>Errores financieros en emprendimiento</li>
+            </ul>
+          </div>
+          <div class="cover-bottom">
+            <span>Descarga gratuita · PDF</span>
+            <span>ayp-impact.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── PRINCIPLES ── -->
+<div class="principles">
+  <div class="principles-inner">
+    <div class="principle">
+      <div class="principle-num">01</div>
+      <div class="principle-body">
+        <h3>Preparación</h3>
+        <p>Antes de actuar, se aprende. Un aprendizaje que no se aplica no sirve de nada.</p>
+      </div>
+    </div>
+    <div class="principle">
+      <div class="principle-num">02</div>
+      <div class="principle-body">
+        <h3>Acción</h3>
+        <p>Cada artículo cierra con una ruta concreta — pasos reales que puedes dar hoy.</p>
+      </div>
+    </div>
+    <div class="principle">
+      <div class="principle-num">03</div>
+      <div class="principle-body">
+        <h3>Visión a Largo Plazo</h3>
+        <p>El crecimiento real no viene de atajos, sino de decisiones sostenidas en el tiempo.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── EDICIÓN ACTUAL ── -->
+<section id="edicion">
+  <div class="section-inner">
+    <p class="section-label">Edición Actual</p>
+    <h2 class="section-heading">Vol. 1, N°1 — Talento, IA y Finanzas</h2>
+    <p class="section-sub">Tres temas que definen el presente y el futuro del profesional y emprendedor latinoamericano, explicados por quienes los viven.</p>
+    <div class="issue-grid">
+      <div class="article-card">
+        <div class="article-tag">🌎 Talento & Migración</div>
+        <h3>Oportunidades para el Talento Latino en EE.UU.</h3>
+        <p>Cómo profesionales latinoamericanos están accediendo al mercado laboral estadounidense, qué sectores demandan más talento y qué competencias marcan la diferencia.</p>
+        <a href="#" class="article-link">Leer artículo →</a>
+      </div>
+      <div class="article-card">
+        <div class="article-tag">🤖 Inteligencia Artificial</div>
+        <h3>IA y el Futuro del Trabajo en Latinoamérica</h3>
+        <p>Un análisis honesto sobre qué empleos cambian, cuáles crecen y cómo posicionarte en la era de la automatización sin perder tu esencia profesional.</p>
+        <a href="#" class="article-link">Leer artículo →</a>
+      </div>
+      <div class="article-card">
+        <div class="article-tag">💰 Finanzas del Negocio</div>
+        <h3>Los Errores Financieros Más Comunes en el Emprendimiento</h3>
+        <p>Desde mezclar cuentas personales hasta ignorar el flujo de caja: los errores que más emprendedores cometen y cómo evitarlos antes de que sean costosos.</p>
+        <a href="#" class="article-link">Leer artículo →</a>
+      </div>
+    </div>
+    <div style="margin-top:2.5rem; text-align:center;">
+      <a href="#" class="btn-primary">📥 Descargar PDF Completo — Gratis</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── PULLQUOTE ── -->
+<div class="pullquote">
+  <blockquote>
+    "La revista conecta a expositores con comunidades que quieren crecer. Y lo hace en español, desde Latinoamérica y para Latinoamérica."
+    <cite>— Departamento I+D+i · Aprende y Prospera</cite>
+  </blockquote>
+</div>
+
+<!-- ── ARCHIVO ── -->
+<section id="archivo">
+  <div class="section-inner">
+    <p class="section-label">Biblioteca de Ediciones</p>
+    <h2 class="section-heading">Números Anteriores</h2>
+    <p class="section-sub">Todo nuestro archivo disponible para descarga gratuita. Conocimiento que no caduca.</p>
+    <div class="archive-grid">
+      <div class="archive-card">
+        <div class="archive-cover">
+          <div class="archive-vol">Vol. 1 · N°1 · 2025</div>
+          <div class="archive-title">Talento, IA y Finanzas</div>
+          <span class="archive-badge">Edición Actual</span>
+        </div>
+        <div class="archive-info">
+          <h4>El futuro del profesional latinoamericano</h4>
+          <p>3 artículos · 28 páginas · PDF</p>
+          <a href="#">Descargar →</a>
+        </div>
+      </div>
+      <!-- Placeholder for future issues -->
+      <div class="archive-card" style="opacity:0.45;">
+        <div class="archive-cover" style="background:#1a2a3a; display:flex; align-items:center; justify-content:center;">
+          <div style="text-align:center;">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">📖</div>
+            <div style="font-size:0.75rem; color:rgba(255,255,255,0.4); letter-spacing:0.1em; text-transform:uppercase;">Próxima Edición</div>
+            <div style="font-size:0.65rem; color:rgba(201,168,76,0.5); margin-top:0.3rem;">2° Semestre 2025</div>
+          </div>
+        </div>
+        <div class="archive-info">
+          <h4>Próximamente</h4>
+          <p>¡Suscríbete para ser el primero en recibirla!</p>
+          <a href="#suscripcion">Notificarme →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERTOS ── -->
+<section id="expertos">
+  <div class="section-inner">
+    <p class="section-label">Los Expertos Detrás del Contenido</p>
+    <div class="experts-intro">
+      <div>
+        <h2 class="section-heading">Experiencia real,<br/>no teoría vacía</h2>
+        <p class="section-sub" style="margin-bottom:2rem;">Cada artículo nace de una sesión con profesionales que viven lo que enseñan. No hay consejos sin trayectoria que los respalde.</p>
+        <div class="expert-cards">
+          <div class="expert-card">
+            <div class="expert-avatar">A</div>
+            <div class="expert-info">
+              <h4>Experto en Migración Profesional</h4>
+              <p>Más de 12 años conectando talento latino con empresas en EE.UU.</p>
+            </div>
+            <span class="expert-tag">Vol. 1</span>
+          </div>
+          <div class="expert-card">
+            <div class="expert-avatar">M</div>
+            <div class="expert-info">
+              <h4>Especialista en IA Aplicada</h4>
+              <p>Implementación de IA en PyMEs latinoamericanas desde 2019.</p>
+            </div>
+            <span class="expert-tag">Vol. 1</span>
+          </div>
+          <div class="expert-card">
+            <div class="expert-avatar">C</div>
+            <div class="expert-info">
+              <h4>Consultora Financiera para Startups</h4>
+              <p>Ha asesorado a más de 80 emprendedores en Latinoamérica.</p>
+            </div>
+            <span class="expert-tag">Vol. 1</span>
+          </div>
+        </div>
+      </div>
+      <div class="experts-cta-box">
+        <h3>¿Eres experto en tu campo?</h3>
+        <p>La Impact Review busca profesionales latinoamericanos con experiencia real que quieran compartir su conocimiento con una comunidad en crecimiento.</p>
+        <p style="margin-bottom:1.5rem; color:rgba(255,255,255,0.6); font-size:0.88rem;">Publicamos de forma semestral. El proceso es sencillo: una sesión, un artículo, un impacto.</p>
+        <a href="mailto:hola@aprendeyprospera.com" class="btn-primary">Quiero ser expositor →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SUSCRIPCION ── -->
+<section id="suscripcion">
+  <div class="section-inner">
+    <div class="sub-grid">
+      <div>
+        <p class="section-label" style="color:var(--gold);">Suscripción Gratuita</p>
+        <h2 class="section-heading">Recibe cada edición<br/>en tu bandeja</h2>
+        <p class="section-sub">Sin costo. Sin spam. Solo conocimiento aplicado dos veces al año directamente para ti.</p>
+        <ul class="sub-benefits">
+          <li><span class="sub-icon">📥</span><div><strong style="color:var(--white);">PDF de descarga inmediata</strong><br/>Cada edición en formato profesional listo para leer y compartir.</div></li>
+          <li><span class="sub-icon">🔔</span><div><strong style="color:var(--white);">Notificación anticipada</strong><br/>Sé el primero en saber cuándo sale la nueva edición.</div></li>
+          <li><span class="sub-icon">🎙️</span><div><strong style="color:var(--white);">Acceso a sesiones en vivo</strong><br/>Invitaciones exclusivas a sesiones con los expertos de cada número.</div></li>
+          <li><span class="sub-icon">🤝</span><div><strong style="color:var(--white);">Comunidad Aprende y Prospera</strong><br/>Acceso a la red de profesionales y emprendedores de la comunidad.</div></li>
+        </ul>
+      </div>
+      <div class="sub-form">
+        <h3>Únete ahora</h3>
+        <p>Es gratis y siempre lo será. Puedes darte de baja cuando quieras.</p>
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" id="sub-name" placeholder="Tu nombre" />
+        </div>
+        <div class="form-group">
+          <label>Correo Electrónico</label>
+          <input type="email" id="sub-email" placeholder="tu@correo.com" />
+        </div>
+        <div class="form-group">
+          <label>País</label>
+          <select id="sub-country">
+            <option value="">Selecciona tu país</option>
+            <option>México</option><option>Colombia</option><option>Argentina</option>
+            <option>Chile</option><option>Perú</option><option>Venezuela</option>
+            <option>Ecuador</option><option>Guatemala</option><option>Cuba</option>
+            <option>Bolivia</option><option>República Dominicana</option>
+            <option>Honduras</option><option>Paraguay</option><option>El Salvador</option>
+            <option>Nicaragua</option><option>Costa Rica</option><option>Panamá</option>
+            <option>Uruguay</option><option>Estados Unidos</option><option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Perfil</label>
+          <select id="sub-profile">
+            <option value="">¿Cómo te describes?</option>
+            <option>Emprendedor/a en etapa temprana</option>
+            <option>Dueño/a de negocio establecido</option>
+            <option>Profesional en relación de dependencia</option>
+            <option>Estudiante universitario/a</option>
+            <option>Freelancer / Consultor/a independiente</option>
+          </select>
+        </div>
+        <button class="sub-submit" onclick="handleSubscribe()">Suscribirme gratis →</button>
+        <div class="success-msg" id="success-msg">✅ ¡Listo! Te enviaremos la próxima edición directamente a tu correo.</div>
+        <p class="sub-note">Al suscribirte aceptas recibir la revista y comunicaciones de Aprende y Prospera. Sin spam, sin venta de datos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── COMUNIDAD ── -->
+<section id="comunidad">
+  <div class="section-inner">
+    <p class="section-label">Más allá de la revista</p>
+    <h2 class="section-heading">La comunidad Aprende y Prospera</h2>
+    <p class="section-sub">La Impact Review es una puerta de entrada a un ecosistema de aprendizaje continuo. Elige cómo quieres seguir creciendo.</p>
+    <div class="community-grid">
+      <div class="community-card">
+        <div class="community-icon">🎙️</div>
+        <h3>Sesiones con Expertos</h3>
+        <p>Asiste en vivo a las sesiones que después se convierten en artículos de la revista. Haz preguntas directas a quienes tienen la experiencia.</p>
+        <a href="#">Ver próximas sesiones →</a>
+      </div>
+      <div class="community-card">
+        <div class="community-icon">💬</div>
+        <h3>Foro y Red de Miembros</h3>
+        <p>Conecta con otros emprendedores y profesionales latinoamericanos. Comparte retos, busca colaboradores y encuentra mentores.</p>
+        <a href="#">Unirme a la red →</a>
+      </div>
+      <div class="community-card">
+        <div class="community-icon">📚</div>
+        <h3>Recursos y Herramientas</h3>
+        <p>Plantillas, guías y recursos prácticos complementarios a cada edición de la revista, disponibles para todos los suscriptores.</p>
+        <a href="#">Ver recursos →</a>
+      </div>
+      <div class="community-card">
+        <div class="community-icon">🏆</div>
+        <h3>Casos de Éxito</h3>
+        <p>Historias reales de miembros que aplicaron lo aprendido y transformaron sus negocios o carreras. Inspírate con resultados concretos.</p>
+        <a href="#">Leer historias →</a>
+      </div>
+      <div class="community-card">
+        <div class="community-icon">🎓</div>
+        <h3>AYP Business School</h3>
+        <p>La revista es el portal escrito de un ecosistema de formación más amplio. Descubre los programas educativos de Aprende y Prospera.</p>
+        <a href="#">Conocer programas →</a>
+      </div>
+      <div class="community-card">
+        <div class="community-icon">📣</div>
+        <h3>Comparte y Amplifica</h3>
+        <p>¿Conoces a alguien que necesita esto? Comparte la revista con tu red. El conocimiento práctico es más poderoso cuando llega a más manos.</p>
+        <a href="#">Compartir revista →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section id="faq">
+  <div class="section-inner">
+    <p class="section-label">Preguntas Frecuentes</p>
+    <h2 class="section-heading">Todo lo que necesitas saber</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Tiene algún costo la revista?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">No. La Impact Review es completamente gratuita. Solo necesitas suscribirte con tu correo electrónico para recibir cada edición en formato PDF directamente en tu bandeja de entrada.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Con qué frecuencia se publica?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">La revista es semestral — publicamos dos ediciones al año. Esto nos permite preparar contenido de alta calidad, con sesiones en profundidad con expertos reales y un proceso editorial riguroso.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Puedo compartir la revista con mi equipo o comunidad?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">¡Por favor hazlo! La revista está diseñada para compartirse. Puedes distribuir el PDF libremente dentro de tu organización, con tu equipo o tu red profesional. Solo pedimos que respetes la autoría y no la uses con fines comerciales sin autorización.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cómo puedo proponer un tema o ser expositor?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Si tienes experiencia en un área relevante para emprendedores y profesionales latinoamericanos, puedes postularte como expositor. Escríbenos a hola@aprendeyprospera.com con una breve descripción de tu perfil y el tema que abordarías.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Puedo leer ediciones anteriores?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Sí. Todas las ediciones publicadas están disponibles en nuestra sección de Archivo para descarga gratuita. No necesitas registrarte para acceder a números anteriores, aunque te recomendamos suscribirte para no perderte los próximos.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Tienen presencia en redes sociales?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Sí. Puedes seguirnos en LinkedIn, Instagram y YouTube bajo el nombre Aprende y Prospera, donde compartimos fragmentos de los artículos, acceso anticipado a sesiones con expertos y contenido complementario de la comunidad.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NOSOTROS ── -->
+<section id="nosotros">
+  <div class="section-inner">
+    <p class="section-label">Quiénes Somos</p>
+    <div class="about-grid">
+      <div>
+        <h2 class="section-heading">Nacimos del aprendizaje<br/>compartido</h2>
+        <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.8; margin-bottom:1.25rem;">
+          Aprende y Prospera – Impact Review nace como el registro escrito de un aprendizaje colectivo: cada número resume sesiones con expertos reales que viven los temas que enseñan.
+        </p>
+        <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.8; margin-bottom:1.25rem;">
+          No hay teoría sin ejemplos, ni consejos sin trayectoria que los respalde. Somos una revista hecha en español, desde Latinoamérica y para Latinoamérica.
+        </p>
+        <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.8;">
+          Respaldada por el <strong style="color:var(--navy);">Departamento de I+D+i de Aprende y Prospera</strong>, la revista es parte de un ecosistema educativo más amplio que conecta a expositores con comunidades que quieren crecer.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-box">
+          <div class="stat-num">2×</div>
+          <div class="stat-label">Ediciones por año, con rigor editorial en cada número</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Gratuita — siempre accesible para quien quiera crecer</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">LATAM</div>
+          <div class="stat-label">Hecha desde y para Latinoamérica, en español</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">PDF</div>
+          <div class="stat-label">Formato digital descargable, fácil de compartir</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-brand" style="margin-bottom:0.75rem;">
+          <span class="eyebrow">Aprende y Prospera</span>
+          <span class="title" style="font-size:1.2rem;">AYP Impact Review</span>
+        </div>
+        <p>La revista digital de educación práctica para profesionales y emprendedores latinoamericanos. Conocimiento aplicado que nace de la experiencia.</p>
+      </div>
+      <div class="footer-col">
+        <h4>La Revista</h4>
+        <ul>
+          <li><a href="#edicion">Edición Actual</a></li>
+          <li><a href="#archivo">Archivo de Ediciones</a></li>
+          <li><a href="#expertos">Nuestros Expertos</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Comunidad</h4>
+        <ul>
+          <li><a href="#suscripcion">Suscribirme Gratis</a></li>
+          <li><a href="#comunidad">Sesiones en Vivo</a></li>
+          <li><a href="#comunidad">Foro de Miembros</a></li>
+          <li><a href="#comunidad">AYP Business School</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:hola@aprendeyprospera.com">hola@aprendeyprospera.com</a></li>
+          <li><a href="#expertos">Ser Expositor</a></li>
+          <li><a href="#faq">Preguntas Frecuentes</a></li>
+          <li><a href="#">Política de Privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Aprende y Prospera · AYP Business School · Todos los derechos reservados</span>
+      <div class="footer-social">
+        <a href="#">LinkedIn</a>
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    if (links.style.display === 'flex') {
+      links.style.display = 'none';
+    } else {
+      links.style.cssText = 'display:flex; flex-direction:column; position:absolute; top:64px; left:0; right:0; background:var(--navy); padding:1rem 2rem; gap:0.25rem; border-top:1px solid rgba(201,168,76,0.2);';
+    }
+  }
+
+  // FAQ accordion
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Subscription
+  function handleSubscribe() {
+    const name = document.getElementById('sub-name').value.trim();
+    const email = document.getElementById('sub-email').value.trim();
+    if (!name || !email) {
+      alert('Por favor completa tu nombre y correo electrónico para suscribirte.');
+      return;
+    }
+    if (!email.includes('@')) {
+      alert('Por favor ingresa un correo electrónico válido.');
+      return;
+    }
+    const msg = document.getElementById('success-msg');
+    msg.style.display = 'block';
+    document.querySelector('.sub-submit').disabled = true;
+    document.querySelector('.sub-submit').textContent = '¡Suscrito! ✓';
+    document.querySelector('.sub-submit').style.background = '#2D6A4F';
+  }
+
+  // Smooth nav highlight on scroll
+  const sections = document.querySelectorAll('section[id], header');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.style.color = '');
+        const id = entry.target.id;
+        const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+        if (link) link.style.color = 'var(--gold)';
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
